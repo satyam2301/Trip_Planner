@@ -14,6 +14,16 @@ if str(ROOT_DIR) not in sys.path:
 
 load_dotenv(ROOT_DIR / ".env")
 
+# Synchronize Streamlit Cloud Secrets into os.environ for backend agents and tools
+try:
+    if hasattr(st, "secrets"):
+        for _sec_k, _sec_v in st.secrets.items():
+            if isinstance(_sec_v, (str, int, float, bool)):
+                os.environ[_sec_k] = str(_sec_v)
+except Exception:
+    pass
+
+
 # Page configuration
 st.set_page_config(
     page_title="AI Travel Planner | Autonomous Multi-Agent System",
