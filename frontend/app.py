@@ -54,6 +54,15 @@ for _p in potential_css_paths:
 if css_content:
     st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
 
+# Theme State (Styles managed exclusively in external style.css via .dark-mode-active)
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
+
+if st.session_state.dark_mode:
+    st.markdown("<span class='dark-mode-active' style='display:none;'></span>", unsafe_allow_html=True)
+
+
+
 
 
 # --- Vector Brand Icon (Modern Compass Rose - Crisp, Theme-Adaptive Vector) ---
@@ -171,11 +180,17 @@ if st.session_state.user is None and not query_token:
     """)
 
 
-# ==============================================================================
-# 🔒 AUTHENTICATION SCREEN (Shown when user is not logged in)
-# ==============================================================================
 if st.session_state.user is None:
+    # 1-Click Dark/Light Mode Switcher
+    col_spacer, col_toggle = st.columns([5.5, 1.5])
+    with col_toggle:
+        toggle_val = st.toggle("🌙 Dark Mode", value=st.session_state.dark_mode, key="auth_theme_toggle")
+        if toggle_val != st.session_state.dark_mode:
+            st.session_state.dark_mode = toggle_val
+            st.rerun()
+
     st.markdown(
+
         f"""
         <div class='auth-header-wrapper'>
             <div class='brand-header-title' style='justify-content: center;'>
@@ -305,8 +320,17 @@ if st.session_state.session_token:
 
 # --- Sidebar ---
 with st.sidebar:
+    # 1-Click Dark/Light Mode Switcher
+    sb_theme_l, sb_theme_r = st.columns([1.5, 1])
+    with sb_theme_r:
+        sb_dark = st.toggle("🌙 Dark", value=st.session_state.dark_mode, key="sidebar_theme_toggle")
+        if sb_dark != st.session_state.dark_mode:
+            st.session_state.dark_mode = sb_dark
+            st.rerun()
+
     # User Profile & 30-Day Session Widget
     initials = "".join([p[0].upper() for p in user_name.split() if p])[:2] or "TR"
+
     st.markdown(f"""
     <div class='user-profile-card'>
         <div class='avatar-circle'>{initials}</div>

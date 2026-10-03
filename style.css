@@ -73,7 +73,7 @@
    Only activates dark variables when dark theme is explicitly set, preventing OS
    dark mode from washing out text when Streamlit is rendering in Light mode.
    ============================================================================== */
-[data-theme="dark"], .stApp[data-theme="dark"] {
+[data-theme="dark"], .stApp[data-theme="dark"], :root:has(.dark-mode-active), .stApp:has(.dark-mode-active) {
     --text-primary: #F8FAFC !important;
     --text-secondary: #CBD5E1 !important;
     --text-muted: #94A3B8 !important;
@@ -113,6 +113,47 @@
     --accent-amber: #FBBF24 !important;
     --accent-blue: #60A5FA !important;
 }
+
+/* Dynamic Dark Mode Container Overrides */
+.stApp:has(.dark-mode-active) {
+    background-color: #0B0F19 !important;
+    color: #F8FAFC !important;
+}
+
+.stApp:has(.dark-mode-active) [data-testid="stSidebar"] {
+    background-color: #111827 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.stApp:has(.dark-mode-active) [data-testid="stHeader"] {
+    background-color: rgba(11, 15, 25, 0.8) !important;
+}
+
+.stApp:has(.dark-mode-active) div[data-baseweb="input"],
+.stApp:has(.dark-mode-active) div[data-baseweb="base-input"] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.stApp:has(.dark-mode-active) input,
+.stApp:has(.dark-mode-active) textarea {
+    color: #F8FAFC !important;
+}
+
+.stApp:has(.dark-mode-active) .stTabs [data-baseweb="tab"] {
+    color: #94A3B8 !important;
+}
+
+.stApp:has(.dark-mode-active) .stTabs [aria-selected="true"] {
+    color: #38BDF8 !important;
+    border-bottom-color: #38BDF8 !important;
+}
+
+.stApp:has(.dark-mode-active) div[data-testid="stForm"] {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
 
 /* ==============================================================================
    3. TYPOGRAPHY & HEADER COMPONENTS
