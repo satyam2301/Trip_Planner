@@ -1,0 +1,518 @@
+/* ==============================================================================
+   AI Travel Planner - Universal Adaptive Stylesheet
+   Theme: Electric Azure & Ice Cyan (Color Hunt Popular #1 Palette)
+   Design: True Specular Glassmorphism with Full Light & Dark Mode Compatibility
+   Note: Zero violet/purple/indigo gradients or accents.
+   ============================================================================== */
+
+/* ==============================================================================
+   1. THEME VARIABLES (Default: Light Mode, Overridden by Dark Mode)
+   ============================================================================== */
+:root {
+    /* Base Typography Colors */
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+
+    /* Glassmorphic Surfaces */
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --card-border: rgba(203, 213, 225, 0.75);
+    --card-border-top: rgba(255, 255, 255, 0.95);
+    --card-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    --card-hover-bg: #FFFFFF;
+    --card-hover-border: rgba(2, 132, 199, 0.45);
+    --card-hover-shadow: 0 16px 36px -4px rgba(2, 132, 199, 0.16), inset 0 1px 0 rgba(255, 255, 255, 1);
+
+    /* Brand Header & Tagline Gradients (Rich high-contrast Azure to Cobalt) */
+    --title-gradient: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%);
+    --tagline-gradient: linear-gradient(90deg, #0284C7 0%, #0D9488 50%, #0284C7 100%);
+    --caret-color: #0284C7;
+
+    /* Status Badges */
+    --badge-bg: rgba(2, 132, 199, 0.08);
+    --badge-color: #0369A1;
+    --badge-border: rgba(2, 132, 199, 0.32);
+
+    /* Secondary Buttons (Pills, Sidebar Actions) */
+    --btn-sec-bg: #FFFFFF;
+    --btn-sec-border: #CBD5E1;
+    --btn-sec-text: #1E293B;
+    --btn-sec-hover-bg: #F0F9FF;
+    --btn-sec-hover-border: #0284C7;
+    --btn-sec-hover-text: #0284C7;
+
+    /* Primary Gradient Button */
+    --btn-primary-bg: linear-gradient(135deg, #0284C7 0%, #0052CC 100%);
+    --btn-primary-shadow: 0 6px 20px 0 rgba(2, 132, 199, 0.35);
+
+    /* Brand Vector Icon Badge */
+    --brand-box-bg: rgba(2, 132, 199, 0.08);
+    --brand-box-border: rgba(2, 132, 199, 0.3);
+    --brand-box-shadow: 0 4px 16px rgba(2, 132, 199, 0.15);
+    --brand-stop-start: #0284C7;
+    --brand-stop-end: #1D4ED8;
+
+    /* Avatar */
+    --avatar-bg: linear-gradient(135deg, #0284C7 0%, #1D4ED8 100%);
+    --avatar-text: #FFFFFF;
+
+    /* Active Session Pill */
+    --pill-session-bg: rgba(16, 185, 129, 0.12);
+    --pill-session-color: #047857;
+    --pill-session-border: rgba(16, 185, 129, 0.3);
+
+    /* Functional Accents */
+    --accent-cyan: #0284C7;
+    --accent-emerald: #059669;
+    --accent-amber: #D97706;
+    --accent-blue: #2563EB;
+}
+
+/* ==============================================================================
+   2. THEME ADAPTATION (High Contrast in Both Light & Dark Mode)
+   Only activates dark variables when dark theme is explicitly set, preventing OS
+   dark mode from washing out text when Streamlit is rendering in Light mode.
+   ============================================================================== */
+[data-theme="dark"], .stApp[data-theme="dark"] {
+    --text-primary: #F8FAFC !important;
+    --text-secondary: #CBD5E1 !important;
+    --text-muted: #94A3B8 !important;
+    --card-bg: rgba(255, 255, 255, 0.05) !important;
+    --card-border: rgba(255, 255, 255, 0.14) !important;
+    --card-border-top: rgba(255, 255, 255, 0.28) !important;
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.15) !important;
+    --card-hover-bg: rgba(255, 255, 255, 0.08) !important;
+    --card-hover-border: rgba(56, 189, 248, 0.45) !important;
+    --card-hover-shadow: 0 14px 40px 0 rgba(56, 189, 248, 0.25) !important;
+    --title-gradient: linear-gradient(135deg, #38BDF8 0%, #60A5FA 100%) !important;
+    --tagline-gradient: linear-gradient(90deg, #38BDF8 0%, #2DD4BF 50%, #38BDF8 100%) !important;
+    --caret-color: #38BDF8 !important;
+    --badge-bg: rgba(56, 189, 248, 0.1) !important;
+    --badge-color: #38BDF8 !important;
+    --badge-border: rgba(56, 189, 248, 0.35) !important;
+    --btn-sec-bg: rgba(255, 255, 255, 0.05) !important;
+    --btn-sec-border: rgba(255, 255, 255, 0.15) !important;
+    --btn-sec-text: #F1F5F9 !important;
+    --btn-sec-hover-bg: rgba(255, 255, 255, 0.09) !important;
+    --btn-sec-hover-border: rgba(56, 189, 248, 0.5) !important;
+    --btn-sec-hover-text: #38BDF8 !important;
+    --btn-primary-bg: linear-gradient(135deg, #0284C7 0%, #2563EB 100%) !important;
+    --btn-primary-shadow: 0 6px 20px 0 rgba(2, 132, 199, 0.4) !important;
+    --brand-box-bg: rgba(255, 255, 255, 0.06) !important;
+    --brand-box-border: rgba(255, 255, 255, 0.18) !important;
+    --brand-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+    --brand-stop-start: #38BDF8 !important;
+    --brand-stop-end: #60A5FA !important;
+    --avatar-bg: linear-gradient(135deg, #38BDF8 0%, #2563EB 100%) !important;
+    --avatar-text: #0F172A !important;
+    --pill-session-bg: rgba(16, 185, 129, 0.16) !important;
+    --pill-session-color: #34D399 !important;
+    --pill-session-border: rgba(16, 185, 129, 0.35) !important;
+    --accent-cyan: #38BDF8 !important;
+    --accent-emerald: #34D399 !important;
+    --accent-amber: #FBBF24 !important;
+    --accent-blue: #60A5FA !important;
+}
+
+/* ==============================================================================
+   3. TYPOGRAPHY & HEADER COMPONENTS
+   ============================================================================== */
+.brand-header-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.brand-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--brand-box-bg);
+    border: 1px solid var(--brand-box-border);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--brand-box-shadow);
+    flex-shrink: 0;
+}
+
+.brand-text {
+    font-size: 2.35rem;
+    font-weight: 800;
+    background: var(--title-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.main-header {
+    font-size: 2.35rem;
+    font-weight: 800;
+    background: var(--title-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sub-header {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1.4rem;
+    line-height: 1.5;
+}
+
+.auth-header-wrapper {
+    text-align: center;
+    margin: 1.8rem auto 1.5rem auto;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-sub-header {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.55;
+    margin-top: 0.6rem;
+    max-width: 620px;
+}
+
+/* ==============================================================================
+   4. ANIMATED TYPEWRITER TAGLINE
+   ============================================================================== */
+.animated-tagline-container {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+}
+
+.typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2.5px solid var(--caret-color);
+    width: 0;
+    max-width: 100%;
+    animation: 
+        typewriter 2.6s steps(47, end) 0.15s forwards,
+        blink-caret 0.8s step-end infinite,
+        tagline-shimmer 5s ease-in-out infinite 2.8s;
+    font-size: 1.14rem;
+    font-weight: 600;
+    background: var(--tagline-gradient);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.01em;
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 48ch; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--caret-color); }
+}
+
+@keyframes tagline-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    border: 1px solid var(--badge-border);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(10px);
+}
+
+/* ==============================================================================
+   5. GLASSMORPHIC METRIC CARDS
+   ============================================================================== */
+.metric-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid var(--card-border-top);
+    border-radius: 1.15rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    background: var(--card-hover-bg);
+    border-color: var(--card-hover-border);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.metric-card-dest {
+    border-top: 3px solid var(--accent-cyan);
+}
+
+.metric-card-duration {
+    border-top: 3px solid var(--accent-emerald);
+}
+
+.metric-card-dates {
+    border-top: 3px solid var(--accent-amber);
+}
+
+.metric-card-calls {
+    border-top: 3px solid var(--accent-blue);
+}
+
+.metric-val {
+    font-size: 1.38rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.metric-lbl {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+/* ==============================================================================
+   6. SIDEBAR USER PROFILE & FOREX (GLASSMORPHISM)
+   ============================================================================== */
+.user-profile-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid var(--card-border-top);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.user-profile-card:hover {
+    border-color: var(--card-hover-border);
+}
+
+.avatar-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--avatar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--avatar-text);
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+    flex-shrink: 0;
+}
+
+.active-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    background: var(--pill-session-bg);
+    color: var(--pill-session-color);
+    border: 1px solid var(--pill-session-border);
+    font-size: 0.73rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--pill-session-color);
+    box-shadow: 0 0 8px var(--pill-session-color);
+}
+
+/* Live Forex Card */
+.forex-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid var(--card-border-top);
+    border-radius: 0.85rem;
+    padding: 0.95rem 1rem;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* ==============================================================================
+   7. GLASSMORPHIC WALKTHROUGH FEATURE CARDS
+   ============================================================================== */
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 1px solid var(--card-border-top);
+    border-radius: 14px;
+    padding: 1.4rem;
+    height: 100%;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+    border-color: var(--card-hover-border);
+    transform: translateY(-4px);
+    background: var(--card-hover-bg);
+    box-shadow: var(--card-hover-shadow);
+}
+
+/* ==============================================================================
+   8. TABS, FORMS & BUTTONS (HIGH CONTRAST IN BOTH LIGHT & DARK)
+   ============================================================================== */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px 18px;
+    color: var(--text-secondary) !important;
+    font-weight: 600;
+    opacity: 0.85;
+    transition: all 0.2s ease;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    opacity: 1;
+    color: var(--accent-cyan) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: var(--accent-cyan) !important;
+    border-bottom: 2.5px solid var(--accent-cyan) !important;
+    background: var(--badge-bg) !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}
+
+/* Glassmorphic Form Container */
+div[data-testid="stForm"] {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    border-top: 1px solid var(--card-border-top) !important;
+    border-radius: 16px !important;
+    padding: 1.6rem !important;
+    box-shadow: var(--card-shadow) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+div[data-testid="stForm"]:hover {
+    border-color: var(--card-hover-border) !important;
+    box-shadow: var(--card-hover-shadow) !important;
+}
+
+/* Form Input Enhancement */
+div[data-baseweb="input"], div[data-baseweb="base-input"] {
+    border-radius: 10px !important;
+    border: 1px solid var(--card-border) !important;
+    transition: all 0.2s ease !important;
+}
+
+div[data-baseweb="input"]:focus-within, div[data-baseweb="base-input"]:focus-within {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.25) !important;
+}
+
+/* Primary Glassmorphic Action & Form Submit Buttons */
+div.stButton > button[kind="primary"],
+div[data-testid="stFormSubmitButton"] > button,
+button[kind="primaryFormSubmit"],
+button[data-testid="stBaseButton-primaryFormSubmit"],
+div.stFormSubmitButton > button {
+    background: var(--btn-primary-bg) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    font-weight: 600 !important;
+    border-radius: 11px !important;
+    box-shadow: var(--btn-primary-shadow), inset 0 1px 0 0 rgba(255, 255, 255, 0.25) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+div.stButton > button[kind="primary"]:hover,
+div[data-testid="stFormSubmitButton"] > button:hover,
+button[kind="primaryFormSubmit"]:hover,
+button[data-testid="stBaseButton-primaryFormSubmit"]:hover,
+div.stFormSubmitButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 30px 0 rgba(2, 132, 199, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.35) !important;
+    opacity: 0.98 !important;
+}
+
+/* Secondary Button Glassmorphism (Visible in BOTH Light and Dark Mode) */
+div.stButton > button:not([kind="primary"]) {
+    background: var(--btn-sec-bg) !important;
+    border: 1px solid var(--btn-sec-border) !important;
+    color: var(--btn-sec-text) !important;
+    font-weight: 500 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    transition: all 0.2s ease !important;
+}
+
+div.stButton > button:not([kind="primary"]):hover {
+    background: var(--btn-sec-hover-bg) !important;
+    border-color: var(--btn-sec-hover-border) !important;
+    color: var(--btn-sec-hover-text) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Hidden iframe bridge for silent local storage sync */
+iframe[height="1"] {
+    display: none !important;
+    height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    border: none !important;
+}
+
