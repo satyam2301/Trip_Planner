@@ -33,10 +33,27 @@ st.set_page_config(
 )
 
 # Custom CSS styling (loaded from separate external stylesheet)
-CSS_PATH = Path(__file__).resolve().parent / "style.css"
-if CSS_PATH.exists():
-    with open(CSS_PATH, "r", encoding="utf-8") as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+potential_css_paths = [
+    ROOT_DIR / "frontend" / "style.css",
+    Path(__file__).resolve().parent / "style.css",
+    ROOT_DIR / "style.css",
+    Path("frontend/style.css").resolve(),
+    Path("style.css").resolve(),
+]
+css_content = ""
+for _p in potential_css_paths:
+    if _p.exists():
+        try:
+            with open(_p, "r", encoding="utf-8") as f:
+                css_content = f.read()
+            if css_content.strip():
+                break
+        except Exception:
+            pass
+
+if css_content:
+    st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
+
 
 
 # --- Vector Brand Icon (Modern Compass Rose - Crisp, Theme-Adaptive Vector) ---
